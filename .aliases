@@ -1,0 +1,110 @@
+# --------------------
+# Variables
+# --------------------
+wcu_root=~/dev/wcu/wcu-wp
+wcu_theme=/wp-content/themes/WestCoastUniversity-WP-Theme
+
+# --------------------
+# Bash
+# --------------------
+alias ls='ls -a'
+
+# --------------------
+# Docker
+# --------------------
+alias du='docker-compose up '
+alias dd='docker-compose down '
+
+# --------------------
+# Git 
+# --------------------
+alias gs='git status'
+alias gb='git branch -v'
+alias ga='git add .'
+alias gc='git commit -m '
+alias gpo='git push origin '
+alias gpom='git push origin master'
+alias gph='git push heroku '
+alias gphm='git push heroku main'
+
+# --------------------
+# Heroku
+# --------------------
+alias hl='heroku login'
+alias ht='heroku logs --tail'
+alias hr='heroku git:remote -a '
+alias hb='heroku run bash -a '
+
+# --------------------
+# NPM 
+# --------------------
+alias nrs='npm run serve'
+alias ntd='npm run tauri dev'
+
+# --------------------
+# Terminus 
+# --------------------
+alias tm='terminus '
+alias cc='env:clear-cache '
+alias d='env:deploy '
+alias dev='wcu-wp.dev '
+alias test='wcu-wp.test '
+alias live='wcu-wp.live '
+
+# --------------------
+# WCU Development
+# --------------------
+alias ptt='gpom && tm d test && tm cc test'
+alias ptl='tm d live && tm cc live'
+
+function dump() {
+  d=$(pwd)
+  cd $(echo $wcu_root)/.docker/mysql && gunzip dump.sql.gz
+  cd $(echo $cwd)
+}
+
+function nm() {
+  d=$(pwd)
+  cd $(echo $wcu_root)$(echo $wcu_theme)
+  npx mix
+  cd $(echo $cwd)
+}
+
+function nmw() {
+  cd $(echo $wcu_root)$(echo $wcu_theme) 
+  npx mix watch
+}
+
+function nwc() {
+  d=$(pwd)
+  cd $(echo $wcu_root)$(echo $wcu_theme)/assets/acf-scripts 
+  php init-new-component.php $1
+  cd $(echo $cwd)
+}
+
+function sdb() {
+  if [ -f $(echo $wcu_root)/.docker/mysql/dump_live.sql ] ; then 
+  	echo "Switched dev site db to inactive, live site db to active"
+  	mv $(echo $wcu_root)/.docker/mysql/dump.sql $(echo $wcu_root)/.docker/mysql/dump_dev.sql
+  	mv $(echo $wcu_root)/.docker/mysql/dump_live.sql $(echo $wcu_root)/.docker/mysql/dump.sql
+  elif [ -f $(echo $wcu_root)/.docker/mysql/dump_dev.sql ] ; then
+  	echo "Switched live site db to inactive, dev site db to active"
+  	mv $(echo $wcu_root)/.docker/mysql/dump.sql $(echo $wcu_root)/.docker/mysql/dump_live.sql 
+  	mv $(echo $wcu_root)/.docker/mysql/dump_dev.sql $(echo $wcu_root)/.docker/mysql/dump.sql 
+  else 
+  	echo "no cases matched"
+  fi
+}
+
+function sw() {
+  cd $(echo $wcu_root)$(echo $wcu_theme)/assets/svelte-components
+  npm run watch
+}
+
+function wcur() {
+  cd $(echo $wcu_root)
+}
+
+function wcut() {
+  cd $(echo $wcu_root)$(echo $wcu_theme)
+}
