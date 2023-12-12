@@ -77,7 +77,7 @@ function nmw() {
 
 function nwc() {
   d=$(pwd)
-  cd ~/.dotfiles/acf-scripts 
+  cd ~/.dotfiles/wcu/acf-scripts 
   php init-new-component.php $1
   cd $(echo $cwd)
 }
