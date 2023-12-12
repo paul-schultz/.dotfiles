@@ -1,0 +1,25 @@
+{
+  "autorun": true,
+  "autokill": true,
+  "terminals": [
+    {
+      "name": "DOCKER",
+      "description": "For running docker commands",
+      "open": true,
+      "focus": false
+    },
+    {
+      "name": "SASS",
+      "description": "For compiling sass files",
+      "open": true,
+      "focus": false      
+    },
+    {
+      "name": "GIT",
+      "description": "For running git commands",
+      "open": true,
+      "focus": true,
+      "commands": ["git status"]
+    }
+  ]
+}
