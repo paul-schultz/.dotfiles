@@ -16,8 +16,9 @@ services:
 #      - db-data:/var/lib/mysql
       - ./.docker/mysql/dump.sql:/docker-entrypoint-initdb.d/dump.sql      
     expose:
-      - 3307:3306
-      - 33060      
+      - "3306"
+    ports:
+      - "3307:3306"
   wordpress:
 #    build: ./
     image: wordpress:6.3-php8.1
@@ -32,7 +33,7 @@ services:
     volumes:
       - ./:/var/www/html
     ports:
-      - 3000:80
+      - "3000:80"
 
 #volumes:
 #  db-data:
