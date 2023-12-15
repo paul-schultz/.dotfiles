@@ -17,6 +17,7 @@ keymap.set('n', '<C-a>', 'gg<S-v>G')
 
 if vim.g.vscode then
     -- VSCode Shortcuts
+
     -- Split editor
     keymap.set('n', 'ss', "<cmd>:call VSCodeNotify('workbench.action.splitEditor')<CR>")
     keymap.set('n', 'sv', "<cmd>:call VSCodeNotify('workbench.action.splitEditorDown')<CR>")
@@ -45,6 +46,7 @@ if vim.g.vscode then
     keymap.set('', 'tb', ":call VSCodeNotify('workbench.action.toggleSidebarVisibility')<CR>")
 else
     -- Vanilla Neovim
+
     -- 
     -- Base config
     -- 
