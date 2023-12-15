@@ -57,29 +57,36 @@ alias live='wcu-wp.live '
 alias ptt='gpom && tm d test && tm cc test'
 alias ptl='tm d live && tm cc live'
 
-function dump() {
-  d=$(pwd)
-  cd $(echo $wcu_root)/.docker/mysql && gunzip dump.sql.gz
-  cd $(echo $cwd)
+# navigation aliases for the project root and the theme root
+function wcur() {
+  cd $(echo $wcu_root)
 }
 
-function nm() {
-  d=$(pwd)
+function wcut() {
+  cd $(echo $wcu_root)$(echo $wcu_theme)
+}
+
+function dump() {  
+  cd $(echo $wcu_root)/.docker/mysql && gunzip dump.sql.gz
+  wcur
+}
+
+function nm() {  
   cd $(echo $wcu_root)$(echo $wcu_theme)
   npx mix
-  cd $(echo $cwd)
+  wcur
 }
 
 function nmw() {
   cd $(echo $wcu_root)$(echo $wcu_theme) 
   npx mix watch
+  wcur
 }
 
-function nwc() {
-  d=$(pwd)
+function nwc() {  
   cd ~/.dotfiles/wcu/acf-scripts 
   php init-new-component.php $1
-  cd $(echo $cwd)
+  wcur
 }
 
 function sdb() {
@@ -94,17 +101,11 @@ function sdb() {
   else 
   	echo "no cases matched"
   fi
+  wcur
 }
 
 function sw() {
   cd $(echo $wcu_root)$(echo $wcu_theme)/assets/svelte-components
   npm run watch
-}
-
-function wcur() {
-  cd $(echo $wcu_root)
-}
-
-function wcut() {
-  cd $(echo $wcu_root)$(echo $wcu_theme)
+  wcur
 }
