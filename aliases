@@ -2,7 +2,7 @@
 # OS/Host Specific Configs
 # --------------------
 if [ $HOST = PShultz-MacBook-Pro.local ]; then
-  PROMPT="%(!.%F{red}.%F{green})%n%F{green}@%m %F{cyan}%~ $%F{reset} "
+  PROMPT="%(!.%F{red}.%F{green})%n%F{green}@%m %F{cyan}%~ %F{white}$%F{reset} "
 fi
 
 # --------------------
